@@ -1,0 +1,14 @@
+# define: USER
+[Unit]
+Description=ProtonMailBridge
+After=network.target
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory=/home/$USER/
+ExecStart=protonmail-bridge --noninteractive &>protonmail_bridge.log
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

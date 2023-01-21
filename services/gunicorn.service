@@ -1,0 +1,15 @@
+# define: USER PROJECT PROJECT_DIR PATH
+[Unit]
+Description=Gunicorn instance to serve $PROJECT
+After=network.target
+Type=forking
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory=$PROJECT_DIR
+Environment=PATH="$PATH"
+ExecStart="$ExecStart"
+
+[Install]
+WantedBy=multi-user.target

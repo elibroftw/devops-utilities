@@ -1,0 +1,14 @@
+# define:
+[Unit]
+Description=Monero Daemon
+After=network.target
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory=$PROJECT_DIR
+ExecStart=$monerod --non-interactive --config-file other_files/monerod.conf --data-dir $blockchain_dir
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

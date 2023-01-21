@@ -1,0 +1,15 @@
+# template for monero-wallet-rpc https://monerodocs.org/interacting/monero-wallet-rpc-reference/
+# define: USER PROJECT_DIR RPC_PASSWORD WALLET_FILE WALLET_PW
+[Unit]
+Description=Monero Wallet RPC for $WALLET_NAME
+After=network.target
+
+[Service]
+User=$USER
+Group=www-data
+WorkingDirectory=$PROJECT_DIR
+ExecStart=$monero_rpc --config-file other_files/monero-rpc.common.conf --rpc-login monero:$RPC_PASSWORD --untrusted-daemon --rpc-bind-port 38088 --wallet-file $WALLET_FILE /home/maste/monero/wallets/stagenet_lenerva/stagenet_lenerva_viewonly --password $WALLET_PW
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
